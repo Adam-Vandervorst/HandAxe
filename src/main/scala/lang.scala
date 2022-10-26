@@ -13,6 +13,8 @@ enum Grip:
 enum Command:
   case Put, Replace, Place, Add, Delete, Fill, Set, Remove, Echo
 
-case class Accessor(locator: Locator, qualifier: Qualifier, grip: Grip)
+case class Accessor(locator: Locator, qualifier: Qualifier, grip: Grip):
+  def apply(t: Tuple): Any = ???
 
-case class Setter(accessor: Accessor, command: Command)
+case class Setter(accessor: Accessor, command: Command):
+  def apply(t: Tuple): Any = ???
