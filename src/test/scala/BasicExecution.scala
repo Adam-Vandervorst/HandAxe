@@ -9,13 +9,16 @@ object TestLists:
   val veggies = List("🥕", "🌶", "🥑", "🥦")
   val manyVeggies = List("🌶", "🥑", "🥑", "🥑", "🥑", "🥑", "🌶", "🥑", "🥑", "🥑", "🥑")
   val otherVeggies = List("🥑", "🥕", "🫑", "🍆", "🌶")
+  val scatteredVeggies = List("🥦", "🌶", "🥑", "🥑", "🌶")
+  val doubleVeggies = List("🥑", "🥑", "🥕", "🥕", "🍆", "🍆")
+  val extraHot = List("🌶", "🌶", "🌶", "🌶")
 
   def isPepper(s: String): Boolean = s == "🫑" || s == "🌶"
 
 
 class BasicAccessor extends FunSuite:
   import TestLists.*
-  import BasicConstructs.*
+  import BasicAccessors.*
 
   test("at") {
     assert(at(veggies, 2) == "🥑")
@@ -60,4 +63,24 @@ class BasicAccessor extends FunSuite:
 
   test("spanOverEach") {
     assert(spanOverEach(manyVeggies, List(List("🥑", "🥑", "🥑"), List("🥑", "🌶"))) == List(Span(1, 3), Span(4, 6)))
+  }
+
+class BasicSetter extends FunSuite:
+  import TestLists.*
+  import BasicSetters.*
+
+  test("atLastPut") {
+    assert(atLastPut(scatteredVeggies, "🥑", "🫐") == List("🥦", "🌶", "🥑", "🫐", "🌶"))
+  }
+
+  test("withinEcho") {
+    assert(withinEcho(scatteredVeggies, Span(0, 3), "🥕") == List("🥕", "🥕", "🥕", "🫐", "🌶"))
+  }
+
+  test("withinReplace") {
+    assert(withinReplace(doubleVeggies, Span(3, 5), extraHot) == List("🥑", "🥑", "🥕", "🌶", "🌶", "🌶", "🌶", "🍆"))
+  }
+
+  test("overFill") {
+    assert(overFill("Very strange".toList, "strange".toList, "Loop".toList) == "Very LoopLoo".toList)
   }

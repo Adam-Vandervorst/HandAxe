@@ -3,7 +3,7 @@ import munit.FunSuite
 import be.adamv.handaxe.*
 
 
-object BasicConstructs:
+object BasicAccessors:
   import Locator.*
   import Qualifier.*
   import Grip.*
@@ -18,20 +18,26 @@ object BasicConstructs:
   val spanOverLast = Accessor(Over, First, Span)
 
   val spanOverAll = Accessor(Over, Every, Span)
-  
+
   val spanOverEvery = Accessor(Over, Every, Span)
 
   val spanOverEach = Accessor(Over, Every, Span)
-  
+
   val where = Accessor(Of, Where, Value)
 
   val lastWhere = Accessor(Of, Last, Value)
 
   val everyWhere = Accessor(Of, Every, Value)
-  
+
   val indexOfWhere = Accessor(Of, Where, Index)
 
-  
+
+object BasicSetters:
+  import Locator.*
+  import Qualifier.*
+  import Grip.*
+  import Command.*
+
   val atLastPut = Setter(Accessor(At, Last, ???), Put)
 
   val withinEcho = Setter(Accessor(Within, ???, ???), Echo)
